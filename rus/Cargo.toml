@@ -1,0 +1,13 @@
+[package]
+name = "rus"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "test"
+path = "main.rs"
+
+[dependencies]
+wasmer = "2.0.0"
+wasmer-compiler-cranelift = "2.0.0"
+wasmer-engine-universal = "2.0.0"
