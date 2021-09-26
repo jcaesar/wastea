@@ -7,13 +7,13 @@ public class Client {
 
 	public static int counter = 0;
 
-    @Import(name = "inc_by", module = "teavm_unchained")
-    public static native int incBy();
+	@Import(name = "inc_by", module = "teavm_unchained")
+	public static native int incBy();
 
 	@Export(name = "inc")
 	public static int inc() {
 		counter += incBy();
-		//System.out.println("Current counter (VM): " + counter);
+		System.out.println("Current counter (VM): " + counter);
 		return counter;
 	}
 

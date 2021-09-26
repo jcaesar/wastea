@@ -28,6 +28,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     let instance = Instance::new(&module, &import_object)?;
+
+    // Legend has it we have to call main once, first.
+    instance
+        .exports
+        .get::<Function>("start")?
+        .native::<i32, ()>()?
+        .call(0)?;
+
     let function = instance
         .exports
         .get::<Function>("inc")?
