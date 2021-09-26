@@ -30,11 +30,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let instance = Instance::new(&module, &import_object)?;
 
     // Legend has it we have to call main once, first.
+    let argv = instance
+        .exports
+        .get::<Function>("teavm_allocateStringArray")?
+        .native::<i32, i32>()?
+        .call(0)?;
     instance
         .exports
         .get::<Function>("start")?
         .native::<i32, ()>()?
-        .call(0)?;
+        .call(argv)?;
 
     let function = instance
         .exports
